@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mini HDFS Dashboard</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        h1 { color: #333; }
+        table { border-collapse: collapse; width: 100%; margin-top: 10px; }
+        th, td { border: 1px solid #aaa; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .up { color: green; }
+        .down { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Mini HDFS Dashboard</h1>
+    <p>Last updated: {{ now }}</p>
+
+    <h2>📁 Files</h2>
+    <table>
+        <tr><th>Filename</th><th>Chunks (with Datanode Replicas)</th><th>Download</th></tr>
+        {% for fname, finfo in data.files.items() %}
+        <tr>
+            <td>{{ fname }}</td>
+            <td>
+                {% for c in finfo.chunks %}
+                    {{ c.chunk_id }} → 
+                    {% for r in c.replicas %}{{ r }} {% endfor %}<br>
+                {% endfor %}
+            </td>
+            <td><a href="/download/{{ fname }}">Download</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>🧠 Datanodes</h2>
+    <table>
+        <tr><th>Node ID</th><th>Host</th><th>Port</th><th>Status</th><th>Last Heartbeat</th></tr>
+        {% for node, info in data.datanodes.items() %}
+        <tr>
+            <td>{{ node }}</td>
+            <td>{{ info.info.node_id if info.info else "-" }}</td>
+            <td>{{ info.info.port if info.info and info.info.port else "-" }}</td>
+            <td class="{{ 'up' if time.time() - info.last_heartbeat < 30 else 'down' }}">
+                {{ 'UP' if time.time() - info.last_heartbeat < 30 else 'DOWN' }}
+            </td>
+            <td>{{ info.last_heartbeat }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" required>
+        <button type="submit">Upload File</button>
+    </form>
+</body>
+</html>
