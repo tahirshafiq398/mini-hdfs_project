@@ -1,0 +1,8 @@
+{
+  "chunk_size_bytes": 2048000,
+  "replication_factor": 2,
+  "namenode": {"host": "10.147.17.190", "http_port": 5000},
+  "datanodeA": {"host": "10.147.17.177", "port": 6001},
+  "datanodeB": {"host": "10.147.17.179", "port": 6002},
+  "client": {"host": "10.147.17.9"}
+}
