@@ -1,0 +1,62 @@
+{
+  "files": {
+    "Untitled_1": {
+      "filename": "Untitled_1.odt",
+      "size": 9422,
+      "chunk_size": 2048000,
+      "chunks": [
+        {
+          "chunk_id": "Untitled_1_chunk_0",
+          "replicas": [
+            "http://10.147.17.177:6001",
+            "http://10.147.17.179:6002"
+          ]
+        }
+      ]
+    },
+    "sujoy": {
+      "filename": "sujoy.txt",
+      "size": 22,
+      "chunk_size": 2048000,
+      "chunks": [
+        {
+          "chunk_id": "sujoy_chunk_0",
+          "replicas": [
+            "http://10.147.17.177:6001",
+            "http://10.147.17.179:6002"
+          ]
+        }
+      ]
+    },
+    "one": {
+      "filename": "one.txt",
+      "size": 16,
+      "chunk_size": 2048000,
+      "chunks": [
+        {
+          "chunk_id": "one_chunk_0",
+          "replicas": [
+            "http://10.147.17.177:6001",
+            "http://10.147.17.179:6002"
+          ]
+        }
+      ]
+    }
+  },
+  "datanodes": {
+    "DatanodeB": {
+      "last_heartbeat": 1762703284.355931,
+      "info": {
+        "node_id": "DatanodeB",
+        "timestamp": 1762702785.6128478
+      }
+    },
+    "DatanodeA": {
+      "last_heartbeat": 1762703288.1593235,
+      "info": {
+        "node_id": "DatanodeA",
+        "timestamp": 1762702771.4285347
+      }
+    }
+  }
+}
